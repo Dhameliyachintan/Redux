@@ -1,4 +1,4 @@
-import * as ActionType from "../Action.Type"
+import * as ActionType from "../ActionType"
 
 export const incrementcounter = () => (dispatch) => {
     dispatch({type: ActionType.INCREMENT_COUNTER})
