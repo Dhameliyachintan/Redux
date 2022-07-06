@@ -2,34 +2,39 @@
   "doctor": [
     {
       "id": 3,
-      "body": "some commentent",
+      "name": "some commentent",
+      "price": 30,
       "postId": 2
     },
     {
       "id": 4,
-      "body": "some comment",
+      "name": "some comment",
+      "price": 30,
       "postId": 2
     },
     {
       "id": 50,
-      "body": "some comment",
+      "name": "some comment",
+      "price": 30,
       "postId": 10
     }
   ],
   "comments": [
     {
       "id": 3,
-      "body": "some comment",
+      "name": "some comment",
+      "price": 30,
       "postId": 2
     },
     {
       "id": 4,
-      "body": "some comment",
+      "name": "some comment",
+      "price": 30,
       "postId": 2
     },
     {
       "id": 50,
-      "body": "some comment",
+      "name": "some comment",
       "postId": 10
     }
   ],
