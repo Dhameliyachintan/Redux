@@ -13,7 +13,6 @@ export const medicinereducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: true,
-                medicine: [],
                 errors: ''
             }
         case ActionType.GET_MEDICINES:
@@ -23,6 +22,14 @@ export const medicinereducer = (state = initialState, action) => {
                 medicine: action.payload,
                 errors: ''
             }
+        case ActionType.ADD_MEDICINES:
+            return {
+                ...state,
+                isLoading: false,
+                medicine: state.medicine.concat(action.payload),
+                errors: ''
+            }
+       
         case ActionType.MEDICINES_ERROES:
             return {
                 ...state,

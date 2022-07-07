@@ -17,6 +17,41 @@
       "name": "some comment",
       "price": 30,
       "postId": 10
+    },
+    {
+      "id": 361,
+      "name": "chintan",
+      "price": "21",
+      "quantity": "56",
+      "expiry": "2024"
+    },
+    {
+      "id": 387,
+      "name": "amit1",
+      "price": "23",
+      "quantity": "100",
+      "expiry": "2024"
+    },
+    {
+      "id": 806,
+      "name": "asdfg1",
+      "price": "20",
+      "quantity": "100",
+      "expiry": "2022"
+    },
+    {
+      "id": 645,
+      "name": "amit1",
+      "price": "12",
+      "quantity": "31",
+      "expiry": "3"
+    },
+    {
+      "id": 822,
+      "name": "ddttt",
+      "price": "2232",
+      "quantity": "22",
+      "expiry": "23"
     }
   ],
   "comments": [

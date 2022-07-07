@@ -14,7 +14,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CreateIcon from '@mui/icons-material/Create';
 import { useDispatch, useSelector } from 'react-redux';
-import { Medicinedata } from '../Redux/Action/medicine.action';
+import { addmedicinedata, Medicinedata } from '../Redux/Action/medicine.action';
 
 
 
@@ -87,19 +87,24 @@ export default function Medicine() {
   }
 
   const handleSubmitdata = (value) => {
-    let localdata = JSON.parse(localStorage.getItem("medicine"));
+    // let localdata = JSON.parse(localStorage.getItem("medicine"));
 
     let data = {
       id: Math.floor(Math.random() * 1000),
       ...value
     }
 
-    if (localdata === null) {
-      localStorage.setItem("medicine", JSON.stringify([data]))
-    } else {
-      localdata.push(data)
-      localStorage.setItem("medicine", JSON.stringify(localdata))
-    }
+    console.log(data);
+
+    dispatch(addmedicinedata(data))
+
+
+    // if (localdata === null) {
+    //   localStorage.setItem("medicine", JSON.stringify([data]))
+    // } else {
+    //   localdata.push(data)
+    //   localStorage.setItem("medicine", JSON.stringify(localdata))
+    // }
 
     setOpen(false);
     loadData()
@@ -172,7 +177,7 @@ export default function Medicine() {
       {
         medicines.isLoading ?
           <p>Loading...</p> :
-          (medicines.errors !==  '' ?
+          (medicines.errors ?
          
             <p>{medicines.errors}</p> :
 
