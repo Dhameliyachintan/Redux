@@ -172,94 +172,99 @@ export default function Medicine() {
       {
         medicines.isLoading ?
           <p>Loading...</p> :
-          <Box>
-            <Container>
-              <div>
-                <center>
-                  <Button variant="outlined" onClick={() => handleClickOpen()}>
-                    Add Medicine
-                  </Button>
-                  <p>{count.counter}</p>
-                </center>
-                <div style={{ height: 400, width: '100%' }}>
-                  <DataGrid
-                    rows={medicines.medicine}
-                    columns={columns}
-                    pageSize={5}
-                    rowsPerPageOptions={[5]}
-                    checkboxSelection
-                  />
+          (medicines.errors !==  '' ?
+         
+            <p>{medicines.errors}</p> :
 
+            <Box>
+              <Container>
+                <div>
+                  <center>
+                    <Button variant="outlined" onClick={() => handleClickOpen()}>
+                      Add Medicine
+                    </Button>
+                    <p>{count.counter}</p>
+                  </center>
+                  <div style={{ height: 400, width: '100%' }}>
+                    <DataGrid
+                      rows={medicines.medicine}
+                      columns={columns}
+                      pageSize={5}
+                      rowsPerPageOptions={[5]}
+                      checkboxSelection
+                    />
+
+                  </div>
+                  <Dialog open={open} onClose={handleClose}>
+                    <DialogTitle>Add Medicine</DialogTitle>
+                    <Formik value={formik}>
+                      <Form onSubmit={formik.handleSubmit}>
+                        <DialogContent>
+                          <TextField
+                            margin="dense"
+                            id="name"
+                            label="name"
+                            type="name"
+                            fullWidth
+                            variant="standard"
+                            onChange={formik.handleChange}
+                            defaultValue={formik.values.name}
+                            helperText={formik.errors.name}
+                            error={formik.errors.name ? true : false}
+
+                          />
+                          <TextField
+                            margin="dense"
+                            id="price"
+                            label="price"
+                            type="price"
+                            fullWidth
+                            variant="standard"
+                            onChange={formik.handleChange}
+                            defaultValue={formik.values.price}
+                            helperText={formik.errors.price}
+                            error={formik.errors.price ? true : false}
+                          />
+                          <TextField
+                            margin="dense"
+                            id="quantity"
+                            label="quantity"
+                            fullWidth
+                            variant="standard"
+                            onChange={formik.handleChange}
+                            defaultValue={formik.values.quantity}
+                            helperText={formik.errors.quantity}
+                            error={formik.errors.quantity ? true : false}
+
+                          />
+                          <TextField
+                            margin="dense"
+                            id="expiry"
+                            label="expiry"
+                            fullWidth
+                            variant="standard"
+                            onChange={formik.handleChange}
+                            defaultValue={formik.values.expiry}
+                            helperText={formik.errors.expiry}
+                            error={formik.errors.expiry ? true : false}
+                          />
+                          <DialogActions>
+                            <Button onClick={handleClose}>Cancel</Button>
+                            {
+                              Update ?
+                                <Button type="submit">Update</Button>
+                                :
+                                <Button type="submit">Submit</Button>
+                            }
+                          </DialogActions>
+                        </DialogContent>
+                      </Form>
+                    </Formik>
+                  </Dialog>
                 </div>
-                <Dialog open={open} onClose={handleClose}>
-                  <DialogTitle>Add Medicine</DialogTitle>
-                  <Formik value={formik}>
-                    <Form onSubmit={formik.handleSubmit}>
-                      <DialogContent>
-                        <TextField
-                          margin="dense"
-                          id="name"
-                          label="name"
-                          type="name"
-                          fullWidth
-                          variant="standard"
-                          onChange={formik.handleChange}
-                          defaultValue={formik.values.name}
-                          helperText={formik.errors.name}
-                          error={formik.errors.name ? true : false}
-
-                        />
-                        <TextField
-                          margin="dense"
-                          id="price"
-                          label="price"
-                          type="price"
-                          fullWidth
-                          variant="standard"
-                          onChange={formik.handleChange}
-                          defaultValue={formik.values.price}
-                          helperText={formik.errors.price}
-                          error={formik.errors.price ? true : false}
-                        />
-                        <TextField
-                          margin="dense"
-                          id="quantity"
-                          label="quantity"
-                          fullWidth
-                          variant="standard"
-                          onChange={formik.handleChange}
-                          defaultValue={formik.values.quantity}
-                          helperText={formik.errors.quantity}
-                          error={formik.errors.quantity ? true : false}
-
-                        />
-                        <TextField
-                          margin="dense"
-                          id="expiry"
-                          label="expiry"
-                          fullWidth
-                          variant="standard"
-                          onChange={formik.handleChange}
-                          defaultValue={formik.values.expiry}
-                          helperText={formik.errors.expiry}
-                          error={formik.errors.expiry ? true : false}
-                        />
-                        <DialogActions>
-                          <Button onClick={handleClose}>Cancel</Button>
-                          {
-                            Update ?
-                              <Button type="submit">Update</Button>
-                              :
-                              <Button type="submit">Submit</Button>
-                          }
-                        </DialogActions>
-                      </DialogContent>
-                    </Form>
-                  </Formik>
-                </Dialog>
-              </div>
-            </Container>
-          </Box>
+              </Container>
+            </Box>
+              )
       }
     </>
   )
