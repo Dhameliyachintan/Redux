@@ -9,6 +9,13 @@ const initialState = {
 export const medicinereducer = (state = initialState, action) => {
     console.log(action.type, action.payload, state);
     switch (action.type) {
+        case ActionType.REMOVE_MEDICINES:
+            return {
+                ...state,
+                isLoading: false,
+                medicine: state.medicine.filter((d, i) => d.id !== action.payload),
+                errors: ''
+            }
         case ActionType.LOADING_MEDICINES:
             return {
                 ...state,
@@ -29,7 +36,7 @@ export const medicinereducer = (state = initialState, action) => {
                 medicine: state.medicine.concat(action.payload),
                 errors: ''
             }
-       
+
         case ActionType.MEDICINES_ERROES:
             return {
                 ...state,

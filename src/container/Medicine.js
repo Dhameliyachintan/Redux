@@ -14,7 +14,8 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CreateIcon from '@mui/icons-material/Create';
 import { useDispatch, useSelector } from 'react-redux';
-import { addmedicinedata, Medicinedata } from '../Redux/Action/medicine.action';
+import { addmedicinedata, Deletemedicine, Medicinedata, Editmedicines, updatemedicine } from '../Redux/Action/medicine.action';
+import { DialogContentText } from '@mui/material';
 
 
 
@@ -22,11 +23,22 @@ export default function Medicine() {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState([])
   const [Update, setUpdate] = useState('')
+  const [filterdata, setfilterdata] = useState([])
+  const [dopen, setDopen] = useState(false);
+  const [did, setDid] = useState()
+  // const [uid, setUid] = useState()
   const dispatch = useDispatch()
 
   const count = useSelector(state => state.counter)
   const medicines = useSelector(state => state.Medicinedata)
   console.log(medicines.isLoading);
+
+
+  
+  const handleClickDopen = (id) => {
+    setDopen(true);
+    setDid(id);
+};
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -81,6 +93,8 @@ export default function Medicine() {
     console.log(udata);
 
     localStorage.setItem("medicine", JSON.stringify(udata))
+    
+    // dispatch(updatemedicine(value))
     setOpen(false)
     setUpdate()
     loadData()
@@ -135,7 +149,7 @@ export default function Medicine() {
       field: 'delete', headerName: 'Delete', width: 130,
       renderCell: (params) => (
         <>
-          <IconButton aria-label="delete" onClick={() => handleDelete(params.row.id)}>
+          <IconButton aria-label="delete" onClick={() => handleClickDopen(params.row.id)}>
             <DeleteIcon />
           </IconButton>
         </>
@@ -157,18 +171,38 @@ export default function Medicine() {
     setOpen(true);
     setUpdate(data);
     formik.setValues(data);
+
+    // dispatch(Editmedicines(data))
     // console.log(data);
   }
 
   const handleDelete = (id) => {
-    let localData = JSON.parse(localStorage.getItem('medicine'));
-    let filterData = localData.filter((v, i) => v.id !== id);
-    localStorage.setItem("medicine", JSON.stringify(filterData))
+    // let localData = JSON.parse(localStorage.getItem('medicine'));
+    // let filterData = localData.filter((v, i) => v.id !== id);
+    // localStorage.setItem("medicine", JSON.stringify(filterData))
+    dispatch(Deletemedicine(did))
     loadData()
+    setDopen(false);
     console.log(id);
   }
 
+  const handleSearch = (val) => {
+    let localdata = JSON.parse(localStorage.getItem("users"))
 
+    let fdata = localdata.filter((d) => (
+      d.id.toString().includes(val) ||
+      d.name.toString().toLowerCase().includes(val.toLowerCase()) ||
+      d.price.toLowerCase().includes(val.toLowerCase()) ||
+      d.postId.toString().includes(val)
+    ))
+
+    console.log(fdata);
+
+    setfilterdata(fdata)
+    // console.log(val);
+  }
+
+  let fdata = filterdata.length > 0 ? filterdata : data
 
   console.log(medicines.errors);
 
@@ -178,7 +212,7 @@ export default function Medicine() {
         medicines.isLoading ?
           <p>Loading...</p> :
           (medicines.errors ?
-         
+
             <p>{medicines.errors}</p> :
 
             <Box>
@@ -190,6 +224,18 @@ export default function Medicine() {
                     </Button>
                     <p>{count.counter}</p>
                   </center>
+
+                  <div className="form-group mt-3 col-lg-12">
+                    <TextField
+                      type="text"
+                      id='search'
+                      label='search'
+                      variant='standard'
+                      onChange={(e) => handleSearch(e.target.value)}
+
+                    />
+                    <div className="validate" />
+                  </div>
                   <div style={{ height: 400, width: '100%' }}>
                     <DataGrid
                       rows={medicines.medicine}
@@ -266,10 +312,31 @@ export default function Medicine() {
                       </Form>
                     </Formik>
                   </Dialog>
+                  <div>
+                    <Dialog
+                      open={dopen}
+                      onClose={handleClose}
+                      aria-labelledby="alert-dialog-title"
+                      aria-describedby="alert-dialog-description"
+                    >
+                      <DialogTitle id="alert-dialog-title">
+                        {"Are You Sure Delete Medicine Data ...? "}
+                      </DialogTitle>
+                      <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+
+                        </DialogContentText>
+                      </DialogContent>
+                      <DialogActions>
+                        <Button onClick={() => handleDelete()} autofocus>yes</Button>
+                        <Button onClick={handleClose}>No</Button>
+                      </DialogActions>
+                    </Dialog>
+                  </div>
                 </div>
               </Container>
             </Box>
-              )
+          )
       }
     </>
   )

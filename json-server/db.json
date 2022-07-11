@@ -1,57 +1,25 @@
 {
   "doctor": [
     {
-      "id": 3,
-      "name": "some commentent",
-      "price": 30,
-      "postId": 2
-    },
-    {
-      "id": 4,
-      "name": "some comment",
-      "price": 30,
-      "postId": 2
-    },
-    {
-      "id": 50,
-      "name": "some comment",
-      "price": 30,
-      "postId": 10
-    },
-    {
-      "id": 361,
+      "id": 545,
       "name": "chintan",
-      "price": "21",
-      "quantity": "56",
-      "expiry": "2024"
-    },
-    {
-      "id": 387,
-      "name": "amit1",
       "price": "23",
-      "quantity": "100",
-      "expiry": "2024"
-    },
-    {
-      "id": 806,
-      "name": "asdfg1",
-      "price": "20",
       "quantity": "100",
       "expiry": "2022"
     },
     {
-      "id": 645,
+      "id": 793,
       "name": "amit1",
-      "price": "12",
-      "quantity": "31",
-      "expiry": "3"
+      "price": "23",
+      "quantity": "100",
+      "expiry": "2022"
     },
     {
-      "id": 822,
-      "name": "ddttt",
-      "price": "2232",
-      "quantity": "22",
-      "expiry": "23"
+      "id": 68,
+      "name": "amit11",
+      "price": "23",
+      "quantity": "100",
+      "expiry": "2022"
     }
   ],
   "comments": [
@@ -68,9 +36,10 @@
       "postId": 2
     },
     {
-      "id": 50,
+      "id": 5,
       "name": "some comment",
-      "postId": 10
+      "price": 31,
+      "postId": 20
     }
   ],
   "profile": {
