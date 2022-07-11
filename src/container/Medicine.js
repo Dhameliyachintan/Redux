@@ -14,8 +14,9 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CreateIcon from '@mui/icons-material/Create';
 import { useDispatch, useSelector } from 'react-redux';
-import { addmedicinedata, Deletemedicine, Medicinedata, Editmedicines, updatemedicine } from '../Redux/Action/medicine.action';
+import { addmedicinedata, Deletemedicine, Medicinedata, Editmedicines, updatemedicine, search } from '../Redux/Action/medicine.action';
 import { DialogContentText } from '@mui/material';
+import { logDOM } from '@testing-library/react';
 
 
 
@@ -26,7 +27,7 @@ export default function Medicine() {
   const [filterdata, setfilterdata] = useState([])
   const [dopen, setDopen] = useState(false);
   const [did, setDid] = useState()
-  // const [uid, setUid] = useState()
+  const [uid, setUid] = useState()
   const dispatch = useDispatch()
 
   const count = useSelector(state => state.counter)
@@ -34,11 +35,11 @@ export default function Medicine() {
   console.log(medicines.isLoading);
 
 
-  
+
   const handleClickDopen = (id) => {
     setDopen(true);
     setDid(id);
-};
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -81,20 +82,21 @@ export default function Medicine() {
   })
 
   const handleupdate = (value) => {
-    let localdata = JSON.parse(localStorage.getItem("medicine"));
+    // let localdata = JSON.parse(localStorage.getItem("medicine"));
 
-    let udata = localdata.map((l, i) => {
-      if (l.id === value.id) {
-        return value;
-      } else {
-        return l;
-      }
-    })
-    console.log(udata);
+    // let udata = localdata.map((l, i) => {
+    //   if (l.id === value.id) {
+    //     return value;
+    //   } else {
+    //     return l;
+    //   }
+    // })
+    // console.log(udata);
 
-    localStorage.setItem("medicine", JSON.stringify(udata))
-    
-    // dispatch(updatemedicine(value))
+    // localStorage.setItem("medicine", JSON.stringify(udata))
+
+    console.log(value);
+    dispatch(updatemedicine(value))
     setOpen(false)
     setUpdate()
     loadData()
@@ -159,7 +161,7 @@ export default function Medicine() {
       field: 'edit', headerName: 'Edit', width: 130,
       renderCell: (params) => (
         <>
-          <IconButton aria-label="edit" onClick={() => handleEdit(params.row)}>
+          <IconButton aria-label="edit" onClick={() => handleEdit(params)}>
             <CreateIcon />
           </IconButton>
         </>
@@ -167,12 +169,17 @@ export default function Medicine() {
     }
   ];
 
-  const handleEdit = (data) => {
+  const handleEdit = (params) => {
     setOpen(true);
-    setUpdate(data);
-    formik.setValues(data);
-
-    // dispatch(Editmedicines(data))
+    setUpdate(true);
+    formik.setValues({
+      id: params.id,
+      name: params.row.name,
+      price: params.row.price,
+      quantity: params.row.quantity,
+      expiry: params.row.expiry
+    });
+    setUid(params.row.id)
     // console.log(data);
   }
 
@@ -186,23 +193,24 @@ export default function Medicine() {
     console.log(id);
   }
 
-  const handleSearch = (val) => {
-    let localdata = JSON.parse(localStorage.getItem("users"))
+  const handleSearch = (value) => {
+    // let localdata = JSON.parse(localStorage.getItem("users"))
 
-    let fdata = localdata.filter((d) => (
-      d.id.toString().includes(val) ||
-      d.name.toString().toLowerCase().includes(val.toLowerCase()) ||
-      d.price.toLowerCase().includes(val.toLowerCase()) ||
-      d.postId.toString().includes(val)
-    ))
+    // let fdata = localdata.filter((d) => (
+    //   d.id.toString().includes(val) ||
+    //   d.name.toString().toLowerCase().includes(val.toLowerCase()) ||
+    //   d.price.toLowerCase().includes(val.toLowerCase()) ||
+    //   d.postId.toString().includes(val)
+    // ))
 
-    console.log(fdata);
+    // console.log(fdata);
 
-    setfilterdata(fdata)
+    // setfilterdata(fdata)
     // console.log(val);
+    // dispatch(search(value))
   }
 
-  let fdata = filterdata.length > 0 ? filterdata : data
+  // let fdata = filterdata.length > 0 ? filterdata : data
 
   console.log(medicines.errors);
 
@@ -231,6 +239,7 @@ export default function Medicine() {
                       id='search'
                       label='search'
                       variant='standard'
+                      values= "values"
                       onChange={(e) => handleSearch(e.target.value)}
 
                     />

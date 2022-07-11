@@ -15,13 +15,33 @@ export const medicinereducer = (state = initialState, action) => {
                 isLoading: false,
                 medicine: state.medicine.filter((d, i) => d.id !== action.payload),
                 errors: ''
-            }
+            };
+        case ActionType.UPDATAS_MEDICINES:
+            return {
+                ...state,
+                isLoading: false,
+                medicine: state.medicine.map((d) => {
+                    if (d.id === action.payload.id) {
+                        return action.payload
+                    } else {
+                        return d;
+                    }
+                }),
+                errors: ''
+            };
         case ActionType.LOADING_MEDICINES:
             return {
                 ...state,
                 isLoading: true,
                 errors: ''
             }
+        // case ActionType.SEARCH:
+        //     return {
+        //         ...state,
+        //         isLoading: false,
+        //         medicine : state.medicine.filter((values) => values.includes(values)),
+        //         errors: ''
+        //     }
         case ActionType.GET_MEDICINES:
             return {
                 ...state,

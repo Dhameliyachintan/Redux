@@ -1,22 +1,8 @@
 {
   "doctor": [
     {
-      "id": 545,
-      "name": "chintan",
-      "price": "23",
-      "quantity": "100",
-      "expiry": "2022"
-    },
-    {
-      "id": 793,
-      "name": "amit1",
-      "price": "23",
-      "quantity": "100",
-      "expiry": "2022"
-    },
-    {
-      "id": 68,
-      "name": "amit11",
+      "id": 930,
+      "name": "chintan11",
       "price": "23",
       "quantity": "100",
       "expiry": "2022"
