@@ -4,5 +4,5 @@ import { medicinereducer } from "./medicine.reducer";
 
 export const rootReducer = combineReducers ({
     counter: counterReducer,
-    Medicinedata: medicinereducer
+    Medicinesdata: medicinereducer
 })

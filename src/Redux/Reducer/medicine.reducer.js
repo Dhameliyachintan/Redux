@@ -35,13 +35,6 @@ export const medicinereducer = (state = initialState, action) => {
                 isLoading: true,
                 errors: ''
             }
-        // case ActionType.SEARCH:
-        //     return {
-        //         ...state,
-        //         isLoading: false,
-        //         medicine : state.medicine.filter((values) => values.includes(values)),
-        //         errors: ''
-        //     }
         case ActionType.GET_MEDICINES:
             return {
                 ...state,

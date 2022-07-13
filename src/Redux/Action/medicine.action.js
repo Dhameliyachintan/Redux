@@ -4,7 +4,8 @@ import * as ActionType from "../ActionType"
 
 
 // Medicinedata
-export const Medicinedata = () => (dispatch) => {
+export const getMedicines = () => (dispatch) => {
+    console.log("asdaasdasdasdasd");
     try {
         dispatch(loadingmedicine())
         setTimeout(function () {
@@ -109,26 +110,6 @@ export const updatemedicine = (data) => (dispatch) => {
         dispatch(errormedicines(error.message));
     }
 }
-// export const search = (value) => (dispatch) => {
-//     console.log(value);
-//     try {
-//         setTimeout(function () {
-//             return fetch(BASE_URL + 'doctor/' + value.id, {
-//                 method: 'search',
-//                 headers: {
-//                     'Content-Type': 'application/json',
-//                 },
-//                 body: JSON.stringify(value)
-
-//             })
-//                 .then(response => response.json())
-//                 .then(medicine => dispatch({ type: ActionType.SEARCH, payload: medicine }))
-//                 .catch((error) => dispatch(errormedicines(error.message)))
-//         }, 2000)
-//     } catch (error) {
-//         dispatch(errormedicines(error.message));
-//     }
-// }
 
 
 
@@ -160,7 +141,7 @@ export const Deletemedicine = (id) => (dispatch) => {
                         throw errmess;
                     })
                 .then(response => response.json())
-                .then(medicines => dispatch(({ type: ActionType.REMOVE_MEDICINES, payload: medicines })))
+                .then(medicines => dispatch(({ type: ActionType.REMOVE_MEDICINES, payload: id })))
                 .catch((error) => dispatch(errormedicines(error.message)))
         }, 2000)
 

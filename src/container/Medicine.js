@@ -14,9 +14,8 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CreateIcon from '@mui/icons-material/Create';
 import { useDispatch, useSelector } from 'react-redux';
-import { addmedicinedata, Deletemedicine, Medicinedata, Editmedicines, updatemedicine, search } from '../Redux/Action/medicine.action';
+import { addmedicinedata, Deletemedicine, Medicinedata, updatemedicine, getMedicines } from '../Redux/Action/medicine.action';
 import { DialogContentText } from '@mui/material';
-import { logDOM } from '@testing-library/react';
 
 
 
@@ -31,8 +30,8 @@ export default function Medicine() {
   const dispatch = useDispatch()
 
   const count = useSelector(state => state.counter)
-  const medicines = useSelector(state => state.Medicinedata)
-  console.log(medicines.isLoading);
+  const medicines = useSelector(state => state.Medicinesdata)
+  console.log(medicines);
 
 
 
@@ -134,7 +133,7 @@ export default function Medicine() {
   useEffect(
     () => {
       loadData()
-      dispatch(Medicinedata())
+      dispatch(getMedicines())
     },
     [])
 
@@ -193,24 +192,25 @@ export default function Medicine() {
     console.log(id);
   }
 
-  const handleSearch = (value) => {
-    // let localdata = JSON.parse(localStorage.getItem("users"))
+  const handleSearch = (val) => {
+    let localdata = JSON.parse(localStorage.getItem("users"))
 
-    // let fdata = localdata.filter((d) => (
-    //   d.id.toString().includes(val) ||
-    //   d.name.toString().toLowerCase().includes(val.toLowerCase()) ||
-    //   d.price.toLowerCase().includes(val.toLowerCase()) ||
-    //   d.postId.toString().includes(val)
-    // ))
+    let fdata = localdata.filter((d) => (
+      d.id.toString().includes(val) ||
+      d.name.toString().toLowerCase().includes(val.toLowerCase()) ||
+      d.price.toLowerCase().includes(val.toLowerCase()) ||
+      d.quantity.toString().includes(val) ||
+      d.expiry.toString().includes(val)
 
-    // console.log(fdata);
+    ))
 
-    // setfilterdata(fdata)
-    // console.log(val);
-    // dispatch(search(value))
+    console.log(fdata);
+
+    setfilterdata(fdata)
+    console.log(val);
   }
 
-  // let fdata = filterdata.length > 0 ? filterdata : data
+  let fdata = filterdata.length > 0 ? filterdata : data
 
   console.log(medicines.errors);
 
@@ -239,7 +239,7 @@ export default function Medicine() {
                       id='search'
                       label='search'
                       variant='standard'
-                      values= "values"
+                      values="values"
                       onChange={(e) => handleSearch(e.target.value)}
 
                     />
