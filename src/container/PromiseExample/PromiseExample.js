@@ -6,6 +6,12 @@ function PromiseExample(props) {
     const One = () => {
         return "One"
     }
+    
+    // const Two = () => {
+    //         setTimeout(() => {
+    //             return "Two"
+    //         }, 2000)
+    // }
 
     const Two = () => {
         return new Promise(function (resolve, reject) {
@@ -19,11 +25,11 @@ function PromiseExample(props) {
         return "Two"
     }
 
-    const All = () => {
+    const All = async () => {
         let o = One()
         console.log(o);
 
-        let t = Two()
+        let t = await Two()
         console.log(t);
 
         let th = Three()
@@ -53,7 +59,7 @@ function PromiseExample(props) {
 
 
     sum(Display)
-    
+
     return (
         <div>
 
