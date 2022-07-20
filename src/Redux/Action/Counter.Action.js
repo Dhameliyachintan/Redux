@@ -5,5 +5,5 @@ export const incrementcounter = () => (dispatch) => {
 }
 
 export const decrementcounter = () => (dispatch) => {
-    dispatch({type: ActionType.DECREMENT_COUNTER})
+dispatch({type: ActionType.DECREMENT_COUNTER})
 }

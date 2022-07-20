@@ -21,5 +21,3 @@ export const counterReducer = (state = initialState, action) => {
             return state
     }
 }
-
-

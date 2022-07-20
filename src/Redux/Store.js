@@ -18,3 +18,4 @@ export const ConfigurStore = () => {
 
     return {store, persistor }
 }
+

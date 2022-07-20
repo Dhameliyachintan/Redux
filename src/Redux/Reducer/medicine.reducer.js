@@ -35,7 +35,7 @@ export const medicinereducer = (state = initialState, action) => {
                 isLoading: true,
                 errors: ''
             }
-        case ActionType.GET_MEDICINES:
+        case ActionType.GET_MEDICINE:
             return {
                 ...state,
                 isLoading: false,

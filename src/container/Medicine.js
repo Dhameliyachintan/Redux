@@ -14,7 +14,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CreateIcon from '@mui/icons-material/Create';
 import { useDispatch, useSelector } from 'react-redux';
-import { addmedicinedata, Deletemedicine, Medicinedata, updatemedicine, getMedicines } from '../Redux/Action/medicine.action';
+import { addmedicinedata, Deletemedicine, updatemedicine, getMedicines } from '../Redux/Action/medicine.action';
 import { DialogContentText } from '@mui/material';
 
 
@@ -23,7 +23,7 @@ export default function Medicine() {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState([])
   const [Update, setUpdate] = useState('')
-  const [filterdata, setfilterdata] = useState([])
+  const [filter, setfilterdata] = useState([])
   const [dopen, setDopen] = useState(false);
   const [did, setDid] = useState()
   const [uid, setUid] = useState()
@@ -31,7 +31,7 @@ export default function Medicine() {
 
   const count = useSelector(state => state.counter)
   const medicines = useSelector(state => state.Medicinesdata)
-  console.log(medicines);
+  console.log(medicines.isLoading);
 
 
 
@@ -104,14 +104,14 @@ export default function Medicine() {
   const handleSubmitdata = (value) => {
     // let localdata = JSON.parse(localStorage.getItem("medicine"));
 
-    let data = {
+    let udata = {
       id: Math.floor(Math.random() * 1000),
       ...value
     }
 
-    console.log(data);
+    console.log(udata);
 
-    dispatch(addmedicinedata(data))
+    dispatch(addmedicinedata(udata))
 
 
     // if (localdata === null) {
@@ -136,6 +136,12 @@ export default function Medicine() {
       dispatch(getMedicines())
     },
     [])
+
+  // useEffect(
+  //   () => {
+  //     loadData()
+  //   },
+  //   [medicine.isLoading])
 
 
 
@@ -192,27 +198,28 @@ export default function Medicine() {
     console.log(id);
   }
 
-  const handleSearch = (val) => {
-    let localdata = JSON.parse(localStorage.getItem("users"))
+  // const handleSearch = (val) => {
+  //   // let localdata = JSON.parse(localStorage.getItem("users"))
 
-    let fdata = localdata.filter((d) => (
-      d.id.toString().includes(val) ||
-      d.name.toString().toLowerCase().includes(val.toLowerCase()) ||
-      d.price.toLowerCase().includes(val.toLowerCase()) ||
-      d.quantity.toString().includes(val) ||
-      d.expiry.toString().includes(val)
+  //   let fdata = medicines.medicine.filter((d) => (
+  //     d.id.toString().includes(val) ||
+  //     d.name.toString().toLowerCase().includes(val.toLowerCase()) ||
+  //     d.price.toLowerCase().includes(val.toLowerCase()) ||
+  //     d.quantity.toString().includes(val) ||
+  //     d.expiry.toString().includes(val)
 
-    ))
+  //   ))
 
-    console.log(fdata);
+  //   console.log(fdata);
 
-    setfilterdata(fdata)
-    console.log(val);
-  }
+  //   setfilterdata(fdata)
+  //   console.log(val);
+  // }
 
-  let fdata = filterdata.length > 0 ? filterdata : data
+  // let filterData = filter.length > 0 ? filter : data
+  // console.log(filterData);
 
-  console.log(medicines.errors);
+  // console.log(medicines.errors);
 
   return (
     <>
@@ -233,7 +240,7 @@ export default function Medicine() {
                     <p>{count.counter}</p>
                   </center>
 
-                  <div className="form-group mt-3 col-lg-12">
+                  {/* <div className="form-group mt-3 col-lg-12">
                     <TextField
                       type="text"
                       id='search'
@@ -244,7 +251,7 @@ export default function Medicine() {
 
                     />
                     <div className="validate" />
-                  </div>
+                  </div> */}
                   <div style={{ height: 400, width: '100%' }}>
                     <DataGrid
                       rows={medicines.medicine}

@@ -1,9 +1,37 @@
 {
   "doctor": [
     {
-      "id": 359,
-      "name": "amit1",
+      "id": 30,
+      "name": "red",
+      "price": 30,
+      "quantity": 30,
+      "expiry": 2022
+    },
+    {
+      "id": 4,
+      "name": "some comment",
+      "price": 30,
+      "quantity": 30,
+      "expiry": 2022
+    },
+    {
+      "id": 5,
+      "name": "some comment",
+      "price": "311",
+      "quantity": 30,
+      "expiry": "20221"
+    },
+    {
+      "id": 185,
+      "name": "chintan",
       "price": "23",
+      "quantity": "32",
+      "expiry": "2022"
+    },
+    {
+      "id": 948,
+      "name": "chintan1",
+      "price": "20",
       "quantity": "100",
       "expiry": "2022"
     }
@@ -13,19 +41,29 @@
       "id": 3,
       "name": "some comment",
       "price": 30,
-      "postId": 2
+      "quantity": 30,
+      "expiry": 2022
     },
     {
       "id": 4,
       "name": "some comment",
       "price": 30,
-      "postId": 2
+      "quantity": 30,
+      "expiry": 2022
     },
     {
       "id": 5,
       "name": "some comment",
-      "price": 31,
-      "postId": 20
+      "price": "311",
+      "quantity": 30,
+      "expiry": "20221"
+    },
+    {
+      "id": 185,
+      "name": "chintan",
+      "price": "23",
+      "quantity": "32",
+      "expiry": "20221"
     }
   ],
   "profile": {
