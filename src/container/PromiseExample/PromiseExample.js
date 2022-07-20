@@ -16,13 +16,13 @@ function PromiseExample(props) {
     const Two = () => {
         return new Promise(function (resolve, reject) {
             setTimeout(() => {
-                resolve("two")
+                resolve("Two")
             }, 2000)
         })
     }
 
     const Three = () => {
-        return "Two"
+        return "Three"
     }
 
     const All = async () => {
