@@ -104,6 +104,7 @@ export default function MiniDrawer({children}) {
     {label : 'Medicine' , icon: <AddIcCallIcon/>, to: "/Medicine" },
     {label : 'Counter' , icon: <AddIcCallIcon/>, to: "/Counter" },
     {label : 'PromiseExample' , icon: <AddIcCallIcon/>, to: "/PromiseExample" },
+    {label : 'UseMemoExample' , icon: <AddIcCallIcon/>, to: "/UseMemoExample" },
   ]
 
   return (
