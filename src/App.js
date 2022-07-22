@@ -10,6 +10,7 @@ import Medicine from './container/Medicine';
 import { PersistGate } from 'redux-persist/integration/react'
 import PromiseExample from './container/PromiseExample/PromiseExample';
 import UseMemoExample from './container/HookMemo/UseMemoExample';
+import UseCallbackExample from './container/UseCallbackExa/UseCallbackExample';
 
 
 
@@ -27,6 +28,7 @@ function App() {
             <Route exact to path={"/Counter"} component={Counter} />
             <Route exact to path={"/PromiseExample"} component={PromiseExample} />
             <Route exact to path={"/UseMemoExample"} component={UseMemoExample} />
+            <Route exact to path={"/UseCallbackExample"} component={UseCallbackExample} />
           </Switch>
         </MiniDrawer>
         </PersistGate>
