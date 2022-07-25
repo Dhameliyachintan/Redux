@@ -8,7 +8,7 @@ function LisItem({ getItem }) {
         setItems(getItem(5))
     }, [getItem])
 
-console.log(items);
+    console.log(items);
     return (
         <div>
             {

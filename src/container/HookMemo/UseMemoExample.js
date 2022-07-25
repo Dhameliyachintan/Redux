@@ -12,17 +12,17 @@ function UseMemoExample(props) {
             return 1;
         }
     }
-  
+
 
     const result = useMemo(() => finalchange(number), [number])
-    
+
     return (
         <div>
             <input type="text" placeholder='Plesae enter number' onChange={(e) => SetNumber(e.target.value)} />
             <button onClick={() => SetCount(count + 1)}>Count</button>
 
             <p>Counter value : {count}</p>
-            <p>Foctorl value : {result}</p>
+            <p>Foctoral result : {result}</p>
         </div>
     );
 }

@@ -6,7 +6,7 @@ function PromiseExample(props) {
     const One = () => {
         return "One"
     }
-    
+
     // const Two = () => {
     //         setTimeout(() => {
     //             return "Two"
@@ -52,6 +52,7 @@ function PromiseExample(props) {
         let a = 10;
         let b = 50;
 
+
         let c = a + b;
         console.log(c);
         Display(c)
@@ -68,3 +69,5 @@ function PromiseExample(props) {
 }
 
 export default PromiseExample;
+
+

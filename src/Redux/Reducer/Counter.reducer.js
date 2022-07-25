@@ -16,6 +16,11 @@ export const counterReducer = (state = initialState, action) => {
                 ...state,
                 counter: state.counter - 1
             }
+        // case ActionType.INCREMENTBY_COUNTER:
+        //     return {
+        //         ...state,
+        //         counter: state.counter + action.value
+        //     }
 
         default:
             return state

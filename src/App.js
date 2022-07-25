@@ -11,28 +11,38 @@ import { PersistGate } from 'redux-persist/integration/react'
 import PromiseExample from './container/PromiseExample/PromiseExample';
 import UseMemoExample from './container/HookMemo/UseMemoExample';
 import UseCallbackExample from './container/UseCallbackExa/UseCallbackExample';
-
+import Tasklist from './container/TaskList/Tasklist';
+import TaskListrprovider from './container/TaskList/TaskListrprovider';
+// import { ThemeContext, themes } from './ThemeContext';
+// import Layout from './container/UseContext/Layout';
 
 
 function App() {
 
-  let {store, persistor} = ConfigurStore()
+  let { store, persistor } = ConfigurStore()
 
   return (
     <>
-      <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <MiniDrawer>
-          <Switch>
-            <Route exact to path={"/Medicine"} component={Medicine} />
-            <Route exact to path={"/Counter"} component={Counter} />
-            <Route exact to path={"/PromiseExample"} component={PromiseExample} />
-            <Route exact to path={"/UseMemoExample"} component={UseMemoExample} />
-            <Route exact to path={"/UseCallbackExample"} component={UseCallbackExample} />
-          </Switch>
-        </MiniDrawer>
+      {/* <ThemeContext.Provider value={themes.dark}>
+        <Layout />
+      </ThemeContext.Provider> */}
+      <TaskListrprovider>
+        <Tasklist />
+      </TaskListrprovider>
+
+      {/* <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <MiniDrawer>
+            <Switch>
+              <Route exact to path={"/Medicine"} component={Medicine} />
+              <Route exact to path={"/Counter"} component={Counter} />
+              <Route exact to path={"/PromiseExample"} component={PromiseExample} />
+              <Route exact to path={"/UseMemoExample"} component={UseMemoExample} />
+              <Route exact to path={"/UseCallbackExample"} component={UseCallbackExample} />
+            </Switch>
+          </MiniDrawer>
         </PersistGate>
-      </Provider>
+      </Provider> */}
     </>
   );
 }
